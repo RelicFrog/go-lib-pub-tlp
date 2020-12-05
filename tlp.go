@@ -13,7 +13,7 @@ import (
 )
 
 //
-// -- Tracing, Logging & Profiling Features --
+// -- Tracing, Logging & Profiling Features (internal) --
 //
 
 func initJaegerTracing(serviceName string, jaegerServiceAddress string, log *logrus.Logger) {
@@ -71,12 +71,17 @@ func initStackdriverStats(exporter *stackdriver.Exporter, log *logrus.Logger) {
 
 	view.SetReportingPeriod(60 * time.Second)
 	view.RegisterExporter(exporter)
+
 	if err := view.Register(ocgrpc.DefaultServerViews...); err != nil {
 		log.Info("error registering default server views")
 	} else {
 		log.Info("registered default server views")
 	}
 }
+
+//
+// -- Public Functional Scope --
+//
 
 func InitTracing(serviceName string, jaegerServiceAddress string, log *logrus.Logger) {
 
@@ -101,6 +106,7 @@ func InitProfiling(service string, version string, log *logrus.Logger) {
 		log.Infof("sleeping %v to retry initializing Stackdriver profiler", d)
 		time.Sleep(d)
 	}
+
 	log.Warn("could not initialize Stackdriver profiler after retrying, giving up")
 }
 
