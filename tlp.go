@@ -17,7 +17,6 @@ import (
 //
 
 func initJaegerTracing(serviceName string, jaegerServiceAddress string, log *logrus.Logger) {
-
 	// common.GetDotEnvVariable("JAEGER_SERVICE_ADDR")
 	metaJaegerServiceAddress := jaegerServiceAddress
 	if metaJaegerServiceAddress == "" {
@@ -43,7 +42,6 @@ func initJaegerTracing(serviceName string, jaegerServiceAddress string, log *log
 }
 
 func initStackdriverTracing(log *logrus.Logger) {
-
 	// since they are not sharing packages.
 	for i := 1; i <= 3; i++ {
 		exporter, err := stackdriver.NewExporter(stackdriver.Options{})
@@ -68,7 +66,6 @@ func initStackdriverTracing(log *logrus.Logger) {
 }
 
 func initStackdriverStats(exporter *stackdriver.Exporter, log *logrus.Logger) {
-
 	view.SetReportingPeriod(60 * time.Second)
 	view.RegisterExporter(exporter)
 
@@ -84,13 +81,11 @@ func initStackdriverStats(exporter *stackdriver.Exporter, log *logrus.Logger) {
 //
 
 func InitTracing(serviceName string, jaegerServiceAddress string, log *logrus.Logger) {
-
 	initJaegerTracing(serviceName, jaegerServiceAddress, log)
 	initStackdriverTracing(log)
 }
 
 func InitProfiling(service string, version string, log *logrus.Logger) {
-
 	for i := 1; i <= 3; i++ {
 		if err := profiler.Start(profiler.Config{
 			Service:        service,
