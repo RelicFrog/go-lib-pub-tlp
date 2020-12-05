@@ -3,7 +3,7 @@
 [![Software License](https://img.shields.io/badge/license-APACHE%202.0-CB212D.svg)](LICENSE)
 [![Software Version](https://img.shields.io/badge/version-1.0.0-green.svg)]()
 
-_This lightweight library can be used for various microservices (grpc support also available) or standalone applications in the golang context that want to use active profiling, tracing or debugging using stackdriver or jaeger._
+_This lightweight library can be used for various microservices (grpc support available) or standalone applications in the golang context that want to use active profiling, tracing or debugging using stackdriver or jaeger._
 
 ## functional scope
 
